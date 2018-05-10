@@ -18,9 +18,10 @@ EXPOSE 53589
 # Fetch taskd and dependencies, build and install taskd, remove build chain and source files
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends git ca-certificates build-essential cmake gnutls-bin libgnutls28-dev uuid-dev && \
-    git clone https://git.tasktools.org/TM/taskd.git /opt/taskd && \
+    git clone https://github.com/GothenburgBitFactory/taskserver.git /opt/taskd && \
     cd /opt/taskd && \
-    git checkout 1.1.0 && \
+    git submodule init && \
+    git submodule update && \
     cmake . && \
     make && \
     make install && \
