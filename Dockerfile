@@ -1,5 +1,5 @@
-FROM debian:8
-MAINTAINER Jens Erat <email@jenserat.de>
+FROM ubuntu
+MAINTAINER Thomas Reggi <thomas@reggi.com>
 
 # Remove SUID programs
 RUN for i in `find / -perm +6000 -type f 2>/dev/null`; do chmod a-s $i; done
@@ -29,7 +29,6 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get remove -y --auto-remove git build-essential cmake && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ENV HOSTNAME localhost
 COPY taskd.sh /opt/taskd.sh
 USER taskd
 CMD /opt/taskd.sh
