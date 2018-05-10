@@ -28,6 +28,7 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get remove -y --auto-remove git build-essential cmake && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+ENV HOSTNAME localhost
 COPY taskd.sh /opt/taskd.sh
 USER taskd
 CMD /opt/taskd.sh
